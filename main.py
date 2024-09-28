@@ -53,7 +53,7 @@ def fetch_time_blocks(date: datetime.date, class_: str):
             raise ValueError(f"Class '{class_}' not found.")
 
         # Fetch the timetable data
-        data = s.timetable(
+        data = s.timetable_extended(
             klasse=target_class, start=start_date, end=end_date
         ).combine()
         data_list = []
@@ -80,7 +80,7 @@ def fetch_time_blocks(date: datetime.date, class_: str):
                         [str(class_) for class_ in timeblock.klassen][:3]
                     )
                     + ("..." if len(timeblock.klassen) > 3 else ""),
-                    "type": timeblock.activityType,
+                    "type": timeblock.lstext,
                 }
             )
 
